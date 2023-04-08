@@ -1,7 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom'
 import {  useGlobalContext } from './utils/global.context'
 import "../Styles/navbarStyles.css"
-//Revisar las className
 
 
 //Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
@@ -28,7 +27,7 @@ const Navbar = () => {
         {/* Aqui deberan agregar los liks correspondientes a las rutas definidas */}
         <button className="back-btn" onClick={() => navigate(-1)}>↩</button>
         <Link  to="/"><h3 className='nav-h3' >Home</h3></Link>
-        <Link  to="/contacto"><h3 className='nav-h3'>Contact</h3></Link>
+        <Link  to="/contact"><h3 className='nav-h3'>Contact</h3></Link>
         <Link  to="/favs"><h3 className='nav-h3'>Favs</h3></Link>
 
         {/* Deberan implementar ademas la logica para cambiar de Theme con el button */}

@@ -1,71 +1,82 @@
 import { createContext, useContext, useEffect, useReducer, useState } from "react";
 
-export const GlobalContext = createContext(undefined);
 
-const newTheme = {
-  dark: {
-      t: false,   
-  },
-  
-  light: {
-      t: true,   
-  }
+
+
+export const ContextGlobal = createContext(undefined);
+
+const theme = {
+dark: {
+    t: false,   
+},
+
+light: {
+    t: true,   
+    }
 }
 
-const InitialState = newTheme.light ;
-const InitialApiState = []
+const initialState = theme.light ;
+const initialStateApi = []
 
-function newReducer(state, action) {
-  switch (action.type) {
-      case 'SWITCH_DARK':
-          return newTheme.dark
-      case 'SWITCH_LIGHT':
-          return newTheme.light
-      default:
-          throw new Error()
-  }
-}
-
-const apiReducer = (state, action) =>{
-  switch(action.type){
-    case 'GET_API':
-    return action.payload
+function reducer(state, action) {
+switch (action.type) {
+    case 'SWITCH_DARK':
+        return theme.dark
+    case 'SWITCH_LIGHT':
+        return theme.light
     default:
-      throw new Error()
-  }
+        throw new Error()
+    
+}
+}
+const apiReducer = (state, action) =>{
+switch(action.type){
+  case 'GET_API':
+  return action.payload
+  default:
+    throw new Error()
+}
 }
 
 export const ContextProvider = ({ children }) => {
 
-  const [stateTheme, dispatchTheme] = useReducer(newReducer, InitialState)
-  const [apiState, dispatchApi] = useReducer(apiReducer , InitialApiState)
 
-  const [arr, setArr] = useState([]);
-  let arrayExists =  localStorage.getItem("arr") ? true :
-  localStorage.setItem("arr", JSON.stringify(arr))
+const [stateTheme, dispatchTheme] = useReducer(reducer, initialState)
+const [apiState, dispatchApi] = useReducer(apiReducer , initialStateApi)
+
+//Aqui deberan implementar la logica propia del Context, utilizando el hook useMemo
+
+const [arr, setArr] = useState([]);
+let arrayExist =  localStorage.getItem("arr") ? true :
+localStorage.setItem("arr", JSON.stringify(arr))
+
+useEffect(() => {
+  
+  const data = JSON.parse(arrayExist) || [];
+  setArr(data);
+}, [arrayExist]);
+
+
+
+const url = 'https://jsonplaceholder.typicode.com/users';
+
+
 
   useEffect(() => {
-    const data = JSON.parse(arrayExists) || [];
-    setArr(data);
-  }, [arrayExists]);
-
-  const url = 'https://jsonplaceholder.typicode.com/users';
-
-    useEffect(() => {
-        fetch(url)
-        .then(res => res.json())
-        .then(data => dispatchApi({type : 'GET_API', payload: data}))
-    }, [])
+      fetch(url)
+      .then(res => res.json())
+      .then(data => dispatchApi({type : 'GET_API', payload: data}))
+      
+  }, [])
 
 
-  return (
-    <GlobalContext.Provider value={{apiState, arr, setArr, stateTheme, dispatchTheme}}>
-      {children}
-    </GlobalContext.Provider>
-  );
+return (
+  <ContextGlobal.Provider value={{apiState, arr, setArr, stateTheme, dispatchTheme}}>
+    {children}
+  </ContextGlobal.Provider>
+);
 };
 
 export default ContextProvider;
-export const useGlobalContext = () => {
-  return useContext(GlobalContext);
-};
+
+export const useGlobalContext = () => useContext(ContextGlobal)
