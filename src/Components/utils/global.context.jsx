@@ -15,8 +15,8 @@ light: {
     }
 }
 
-const initialState = theme.light ;
-const initialStateApi = []
+const initState = theme.light ;
+const initStateApi = []
 
 function reducer(state, action) {
 switch (action.type) {
@@ -41,20 +41,20 @@ switch(action.type){
 export const ContextProvider = ({ children }) => {
 
 
-const [stateTheme, dispatchTheme] = useReducer(reducer, initialState)
-const [apiState, dispatchApi] = useReducer(apiReducer , initialStateApi)
+const [stateTheme, dispatchTheme] = useReducer(reducer, initState)
+const [apiState, dispatchApi] = useReducer(apiReducer , initStateApi)
 
 //Aqui deberan implementar la logica propia del Context, utilizando el hook useMemo
 
 const [arr, setArr] = useState([]);
-let arrayExist =  localStorage.getItem("arr") ? true :
+let existArr =  localStorage.getItem("arr") ? true :
 localStorage.setItem("arr", JSON.stringify(arr))
 
 useEffect(() => {
   
-  const data = JSON.parse(arrayExist) || [];
+  const data = JSON.parse(existArr);
   setArr(data);
-}, [arrayExist]);
+}, [existArr]);
 
 
 

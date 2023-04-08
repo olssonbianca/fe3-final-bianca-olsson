@@ -10,8 +10,8 @@ display: flex;
 flex-direction: column;
 justify-content: space-around;
 align-items: center;
-width: 300px;
-height: 200px; 
+width: 400px;
+height: 300px; 
 border: solid rgba(0, 0, 0, 0);
 border-radius: 20px ;
 background-color:rgba(0, 0, 0, 0.163);    
@@ -20,9 +20,11 @@ background-color:rgba(0, 0, 0, 0.163);
 .input{
 text-align: center;
 width: 90%;
+height: 56px;;
 font-size: 14px;
 
 }
+
 .input input{
 text-align: center;
 width: 90%;

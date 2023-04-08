@@ -1,7 +1,9 @@
 import { useParams } from 'react-router-dom';
 import { useGlobalContext } from '../Components/utils/global.context';
+import "../Styles/detailStyles.css"
 
 
+//No logre hacer que consuma el ApiState :(((
 
 //Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
 
@@ -10,17 +12,11 @@ const Detail = () => {
   const {apiState} = useGlobalContext();
   // Consumiendo el parametro dinamico de la URL deberan hacer un fetch a un user en especifico
   const paramsId = useParams();
-      
-  const dentistIdSelected = apiState.find((v) => paramsId.id === v.id )
-
-console.log("soy params de details")
-  console.log(paramsId)
-
-
+  const dentist = apiState.find((d) => paramsId.id === d.id )
   return (
 
-    <div className='vista'>
-      <h1 >Detail Dentist {dentistIdSelected.id} </h1>
+    <div>
+      <h1>Detail Dentist {dentist.id} </h1>
       {/* aqui deberan renderizar la informacion en detalle de un user en especifico */}
       {/* Deberan mostrar el name - email - phone - website por cada user en especifico */}
       <table>
@@ -31,13 +27,12 @@ console.log("soy params de details")
           <th>Website</th>
         </tr>
         <tr>
-          <td>{dentistIdSelected.name}</td>
-          <td>{dentistIdSelected.email}</td>
-          <td>{dentistIdSelected.phone}</td>
-          <td>{dentistIdSelected.website}</td>
+          <td>{dentist.name}</td>
+          <td>{dentist.email}</td>
+          <td>{dentist.phone}</td>
+          <td>{dentist.website}</td>
         </tr>
       </table>
-
     </div>
   )
 }

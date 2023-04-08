@@ -15,20 +15,18 @@ const Navbar = () => {
     } else {dispatchTheme({type: 'SWITCH_LIGHT'})} 
   }
 
-  const navigate = useNavigate();
 
   return (
   <div className="navbar">
-      <div className='DH-odonto'>
-          <h4 style={{ color: "red" }}>D</h4><h4>H Odonto</h4>
+      <div className='odonto'>
+          <h4>Odontologia DH</h4>
       </div>
       <nav> 
       
         {/* Aqui deberan agregar los liks correspondientes a las rutas definidas */}
-        <button className="back-btn" onClick={() => navigate(-1)}>↩</button>
-        <Link  to="/"><h3 className='nav-h3' >Home</h3></Link>
-        <Link  to="/contact"><h3 className='nav-h3'>Contact</h3></Link>
-        <Link  to="/favs"><h3 className='nav-h3'>Favs</h3></Link>
+        <Link  to="/"><p className='nav-h3' >Home</p></Link>
+        <Link  to="/contact"><p className='nav-h3'>Contact</p></Link>
+        <Link  to="/favs"><p className='nav-h3'>Favs</p></Link>
 
         {/* Deberan implementar ademas la logica para cambiar de Theme con el button */}
         <button className="theme-btn"  onClick={changeTheme } >{stateTheme.t? '🌙' : '🌞'} </button>

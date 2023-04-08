@@ -45,7 +45,7 @@ const Form = () => {
     <div className="contenedor-formulario">
       <form className="formulario" onSubmit={handleSubmit}>
         <div className="input">
-          <label htmlFor="name">Please enter your name: </label>
+          <label htmlFor="name">Ingrese su nombre</label>
           <input 
             type="text" 
             id="name" 
@@ -57,7 +57,7 @@ const Form = () => {
         </div>
 
         <div className="input">
-          <label htmlFor="email">Please enter your email: </label>
+          <label htmlFor="email">Por favor, ingrese su mail </label>
           <input 
             type="text" 
             id="email" 
@@ -68,7 +68,7 @@ const Form = () => {
           />
         </div>
         
-        <button type="submit">Send</button>
+        <button class="favButton contactBtn" type="submit">Enviar</button>
 
       </form>
       {errorMessage && <h3>{errorMessage}</h3>}

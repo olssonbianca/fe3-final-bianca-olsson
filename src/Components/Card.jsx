@@ -46,8 +46,8 @@ return (
 
     <div>
         <img className="card-img"  src="/images/doctor.jpg" alt="Doctor" width={200}/>
-        <h3>{cardname}</h3>
-        <h2>{username}</h2>
+        <h4>{cardname}</h4>
+        <h3>{username}</h3>
     </div>
 
     </Link>
